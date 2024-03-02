@@ -1,2 +1,2 @@
-# Software-engineering-Project
-Writing a compiler in Java for the Deca language (a small language resembling Java) in a team.
+# Projet Génie Logiciel, Ensimag.
+gl34, 01/01/2024.

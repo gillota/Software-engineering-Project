@@ -1,0 +1,530 @@
+#include "Action.deca"
+
+{
+    Piece jardin = new Piece();
+    Action action1Jardin = new Action();
+    Action action2Jardin = new Action();
+    Actions actionsJardin = new Actions();
+
+    Piece chambre = new Piece();
+    Action action1Chambre = new Action();
+    Action action2Chambre = new Action();
+    Actions actionsChambre = new Actions();
+
+    Piece cuisine = new Piece();
+    Action action1Cuisine = new Action();
+    Action action2Cuisine = new Action();
+    Actions actionsCuisine = new Actions();
+
+    Piece sdb = new Piece();
+    Action action1Sdb = new Action();
+    Action action2Sdb = new Action();
+    Actions actionsSdb = new Actions();
+
+    Piece salon = new Piece();
+    Action action1Salon = new Action();
+    Action action2Salon = new Action();
+    Actions actionsSalon = new Actions();
+
+    Piece bureau = new Piece();
+    Action action1Bureau = new Action();
+    Action action2Bureau = new Action();
+    Actions actionsBureau = new Actions();
+
+    Maison maison = new Maison();
+
+    Jour aujourdhui = new Jour();
+    Jour hier = new Jour();
+
+    int x;
+    boolean bool = true;
+
+    action1Jardin.initAction(0,3);
+    action2Jardin.initAction(1,3);
+    actionsJardin.initActions(action1Jardin,action2Jardin);
+    jardin.initPiece(actionsJardin);
+
+    action1Chambre.initAction(2,3);
+    action2Chambre.initAction(3,1);
+    actionsChambre.initActions(action1Chambre,action2Chambre);
+    chambre.initPiece(actionsChambre);
+
+    action1Cuisine.initAction(4,1);
+    action2Cuisine.initAction(5,2);
+    actionsCuisine.initActions(action1Cuisine,action2Cuisine);
+    cuisine.initPiece(actionsCuisine);
+
+    action1Sdb.initAction(6,2);
+    action2Sdb.initAction(7,1);
+    actionsSdb.initActions(action1Sdb,action2Sdb);
+    sdb.initPiece(actionsSdb);
+
+    action1Salon.initAction(8,2);
+    action2Salon.initAction(9,1);
+    actionsSalon.initActions(action1Salon,action2Salon);
+    salon.initPiece(actionsSalon);
+
+    action1Bureau.initAction(10,1);
+    action2Bureau.initAction(11,1);
+    actionsBureau.initActions(action1Bureau,action2Bureau);
+    bureau.initPiece(actionsBureau);
+
+    maison.initMaison(jardin,chambre,cuisine,sdb,salon,bureau,aujourdhui,hier);
+
+
+    while(bool) {
+        println("");
+        println("Bienvenue dans votre maison, vous avez aujourd'hui ", maison.getPoints()," points et vous émettez ", 25 - maison.getPoints(), "kg de CO2 par jour.");
+        println("Voici votre maison, dans quelle pièce voulez-vous faire une action?");
+        println("Entrez 7 pour voir vos points d'aujourd'hui et de hier");
+        println("");
+        println("+---------------------------+");
+        println("|          Jardin           |");
+        println("+-----------+---------------+");
+        println("|  Chambre  | Salle de Bain  |");
+        println("|           |               |");
+        println("+-----------+---------------+");
+        println("|   Bureau  |    Cuisine     |");
+        println("|           |               |");
+        println("+-----------+---------------+");
+        println("|           Salon           |");
+        println("+---------------------------+ ");
+        println("");
+        println("1-Jardin");
+        println("2-Chambre");
+        println("3-Salle de Bain");
+        println("4-Bureau");
+        println("5-Cuisine");
+        println("6-Salon");
+        println("7-Aujourd'hui");
+        println("8-Quitter");
+
+        x = readInt();
+
+        if (x==1) {
+
+            println("");
+            println("Vous êtes dans le jardin, voici les actions que vous pouvez encore effectuer : ");
+
+            if (!action1Jardin.getEstRealisee()) {
+                println("");
+                print(action1Jardin.getId()+1, "-");
+                action1Jardin.descriptionAction(action1Jardin.getId());
+            }
+
+            if (!action2Jardin.getEstRealisee()) {
+                println("");
+                print(action2Jardin.getId()+1, "-");
+                action2Jardin.descriptionAction(action2Jardin.getId());
+            }
+
+            println("");
+
+            println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+            x = readInt();
+
+            if (x==1) {
+                println("Félicitations ! Vous avez gagné ", action1Jardin.getNbPoints(), " point(s) !");
+                jardin.augmentePointsPiece(action1Jardin.getNbPoints());
+                maison.actualisePoints();
+                action1Jardin.setEstRealisee(true);
+                aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                aujourdhui.nbPoints = aujourdhui.nbPoints + action1Jardin.getNbPoints();
+                }
+
+            else if (x==2) {
+                println("Félicitations ! Vous avez gagné ", action2Jardin.getNbPoints(), " point(s) !");
+                jardin.augmentePointsPiece(action2Jardin.getNbPoints());
+                maison.actualisePoints();
+                action2Jardin.setEstRealisee(true);
+                aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                aujourdhui.nbPoints = aujourdhui.nbPoints + action2Jardin.getNbPoints();
+                }
+            }
+
+        else if (x==2) {
+
+                println("Vous êtes dans la chambre, voici les actions que vous pouvez encore effectuer : ") ;
+
+                if (!action1Chambre.getEstRealisee()) {
+                    println("");
+                    print(1, "-");
+                    action1Chambre.descriptionAction(action1Chambre.getId());
+                }
+
+                if (!action2Chambre.getEstRealisee()) {
+                    println("");
+                    print(2, "-");
+                    action2Chambre.descriptionAction(action2Chambre.getId());
+                    }
+
+                println("");
+                println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+                x = readInt();
+
+                if (x==1) {
+                    print("");
+                    println("Félicitations ! Vous avez gagné ", action1Chambre.getNbPoints(), " point(s) !");
+                    chambre.augmentePointsPiece(action1Chambre.getNbPoints());
+                    maison.actualisePoints();
+                    action1Chambre.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action1Chambre.getNbPoints();
+                    }
+
+                else if (x==2) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action2Chambre.getNbPoints(), " point(s) !");
+                    chambre.augmentePointsPiece(action2Chambre.getNbPoints());
+                    maison.actualisePoints();
+                    action2Chambre.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action2Chambre.getNbPoints();
+                    }
+                }
+
+        else if (x==3) {
+
+                println("Vous êtes dans la salle de bain, voici les actions que vous pouvez encore effectuer : ") ;
+
+                if (!action1Sdb.getEstRealisee()) {
+                    println("");
+                    print(1, "-");
+                    action1Sdb.descriptionAction(action1Sdb.getId());
+                }
+
+                if (!action2Sdb.getEstRealisee()) {
+                    println("");
+                    print(2, "-");
+                    action2Sdb.descriptionAction(action2Sdb.getId());
+                    }
+
+                println("");
+                println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+                x = readInt();
+
+                if (x==1) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action1Sdb.getNbPoints(), " point(s) !");
+                    sdb.augmentePointsPiece(action1Sdb.getNbPoints());
+                    maison.actualisePoints();
+                    action1Sdb.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action1Sdb.getNbPoints();
+                    }
+
+                else if (x==2) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action2Sdb.getNbPoints(), " point(s) !");
+                    sdb.augmentePointsPiece(action2Sdb.getNbPoints());
+                    maison.actualisePoints();
+                    action2Sdb.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action2Sdb.getNbPoints();
+                    }
+                }
+
+        else if (x==4) {
+
+                println("Vous êtes dans le bureau, voici les actions que vous pouvez encore effectuer : ") ;
+
+                if (!action1Bureau.getEstRealisee()) {
+                    println("");
+                    print(1, "-");
+                    action1Bureau.descriptionAction(action1Bureau.getId());
+                }
+
+                if (!action2Bureau.getEstRealisee()) {
+                    println("");
+                    print(2, "-");
+                    action2Bureau.descriptionAction(action2Bureau.getId());
+                    }
+
+                println("");
+                println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+                x = readInt();
+
+                if (x==1) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action1Bureau.getNbPoints(), " point(s) !");
+                    bureau.augmentePointsPiece(action1Bureau.getNbPoints());
+                    maison.actualisePoints();
+                    action1Bureau.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action1Bureau.getNbPoints();
+                    }
+
+                else if (x==2) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action2Bureau.getNbPoints(), " point(s) !");
+                    bureau.augmentePointsPiece(action2Bureau.getNbPoints());
+                    maison.actualisePoints();
+                    action2Bureau.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action2Bureau.getNbPoints();
+                    }
+                }
+
+        else if (x==5) {
+
+                println("Vous êtes dans la cuisine, voici les actions que vous pouvez encore effectuer : ") ;
+
+                if (!action1Cuisine.getEstRealisee()) {
+                    println("");
+                    print(1, "-");
+                    action1Cuisine.descriptionAction(action1Cuisine.getId());
+                }
+
+                if (!action2Cuisine.getEstRealisee()) {
+                    println("");
+                    print(2, "-");
+                    action2Cuisine.descriptionAction(action2Cuisine.getId());
+                    }
+
+                println("");
+                println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+                x = readInt();
+
+                if (x==1) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action1Cuisine.getNbPoints(), " point(s) !");
+                    cuisine.augmentePointsPiece(action1Cuisine.getNbPoints());
+                    maison.actualisePoints();
+                    action1Cuisine.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action1Cuisine.getNbPoints();
+                    }
+
+                else if (x==2) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action2Cuisine.getNbPoints(), " point(s) !");
+                    cuisine.augmentePointsPiece(action2Cuisine.getNbPoints());
+                    maison.actualisePoints();
+                    action2Cuisine.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action2Cuisine.getNbPoints();
+                    }
+                }
+
+        else if (x==6) {
+
+                println("Vous êtes dans le salon, voici les actions que vous pouvez encore effectuer : ") ;
+
+                if (!action1Salon.getEstRealisee()) {
+                    println("");
+                    print(1, "-");
+                    action1Salon.descriptionAction(action1Salon.getId());
+                }
+
+                if (!action2Salon.getEstRealisee()) {
+                    println("");
+                    print(2, "-");
+                    action2Salon.descriptionAction(action2Salon.getId());
+                    }
+
+                println("");
+                println("Entrez le code devant l'action à réaliser si vous l'avez réalisé ou 0 pour retourner au menu principal.");
+
+                x = readInt();
+
+                if (x==1) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action1Salon.getNbPoints(), " point(s) !");
+                    salon.augmentePointsPiece(action1Salon.getNbPoints());
+                    maison.actualisePoints();
+                    action1Salon.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action1Salon.getNbPoints();
+                    }
+
+                else if (x==2) {
+                    println("");
+                    println("Félicitations ! Vous avez gagné ", action2Salon.getNbPoints(), " point(s) !");
+                    salon.augmentePointsPiece(action2Salon.getNbPoints());
+                    maison.actualisePoints();
+                    action2Salon.setEstRealisee(true);
+                    aujourdhui.nbActions = aujourdhui.nbActions + 1;
+                    aujourdhui.nbPoints = aujourdhui.nbPoints + action2Salon.getNbPoints();
+                    }
+                }
+        else if (x==7) {
+
+                println("Vous avez aujourd'hui effectué ", aujourdhui.nbActions, " actions.") ;
+                println("Vous avez aujourd'hui ", aujourdhui.nbPoints, " points.");
+
+                if (aujourdhui.nbActions > hier.nbActions) {
+                    println("C'est ", aujourdhui.nbActions - hier.nbActions, " actions de plus que hier, bravo !");
+                }
+
+                else if (aujourdhui.nbActions < hier.nbActions) {
+                    println("C'est ", hier.nbActions - aujourdhui.nbActions, " actions de moins que hier, ne relachez pas vos efforts !");
+                }
+
+                else {
+                    println("C'est autant d'actions que heir, vous êtes sur la bonne voie !");
+                }
+                println("");
+                println("Que souhaitez vous faire ? Entrez le chiffre correspondant");
+                println("");
+                println("0- Revenir au menu principal");
+                println("1- Voir les actions restantes pour aujourd'hui");
+                println("2- Changer de jour");
+                println("");
+
+                x = readInt();
+
+
+                if ( x == 1 ) {
+                    while (x!=0){
+                    if (!action1Jardin.estRealisee || !action2Jardin.estRealisee) {
+                        println("Dans le jardin : ");
+                        println("");
+                        if (!action1Jardin.estRealisee) {
+                            print("   ");
+                            action1Jardin.descriptionAction(0);
+                            
+                        }
+                        if (!action2Jardin.estRealisee) {
+                            print("   ");
+                            action2Jardin.descriptionAction(1);
+                        }
+                        println("");
+                    }
+
+                    if (!action1Chambre.estRealisee || !action2Chambre.estRealisee) {
+                        println("Dans la chambre : ");
+                        println("");
+                        if (!action1Chambre.estRealisee) {
+                            print("   ");
+                            action1Chambre.descriptionAction(2);
+                            
+                        }
+                        if (!action2Chambre.estRealisee) {
+                            print("   ");
+                            action2Chambre.descriptionAction(3);
+                        }
+                        println("");
+                    }
+
+                    if (!action1Sdb.estRealisee || !action2Sdb.estRealisee) {
+                        println("Dans la salle de bain : ");
+                        println("");
+                        if (!action1Sdb.estRealisee) {
+                            print("   ");
+                            action1Sdb.descriptionAction(6);
+                            
+                        }
+                        if (!action2Sdb.estRealisee) {
+                            print("   ");
+                            action2Sdb.descriptionAction(7);
+                        }
+                        println("");
+                    }
+
+                    if (!action1Bureau.estRealisee || !action2Bureau.estRealisee) {
+                        println("Dans le bureau : ");
+                        println("");
+                        if (!action1Bureau.estRealisee) {
+                            print("   ");
+                            action1Bureau.descriptionAction(10);
+                            
+                        }
+                        if (!action2Bureau.estRealisee) {
+                            print("   ");
+                            action2Bureau.descriptionAction(11);
+                        }
+                        println("");
+                    }
+
+                    if (!action1Cuisine.estRealisee || !action2Cuisine.estRealisee) {
+                        println("Dans la cuisine : ");
+                        println("");
+                        if (!action1Cuisine.estRealisee) {
+                            print("   ");
+                            action1Cuisine.descriptionAction(4);
+                            
+                        }
+                        if (!action2Cuisine.estRealisee) {
+                            print("   ");
+                            action2Cuisine.descriptionAction(5);
+                        }
+                        println("");
+                    }
+
+                    if (!action1Salon.estRealisee || !action2Salon.estRealisee) {
+                        println("Dans le salon : ");
+                        println("");
+                        if (!action1Salon.estRealisee) {
+                            print("   ");
+                            action1Salon.descriptionAction(8);
+                            
+                        }
+                        if (!action2Salon.estRealisee) {
+                            print("   ");
+                            action2Salon.descriptionAction(9);
+                        }
+                        println("");
+                    }
+                    println("");
+                    println("Pour revenir au menu principal, entrez 0");
+                    x = readInt();
+                }
+                }
+                else if (x==2) {
+
+                    hier.nbActions = aujourdhui.nbActions;
+                    hier.nbPoints = aujourdhui.nbPoints;
+                    aujourdhui.nouveauJour();
+
+                    action1Jardin.initAction(0,3);
+                    action2Jardin.initAction(1,3);
+                    actionsJardin.initActions(action1Jardin,action2Jardin);
+                    jardin.initPiece(actionsJardin);
+
+                    action1Chambre.initAction(2,3);
+                    action2Chambre.initAction(3,1);
+                    actionsChambre.initActions(action1Chambre,action2Chambre);
+                    chambre.initPiece(actionsChambre);
+
+                    action1Cuisine.initAction(4,1);
+                    action2Cuisine.initAction(5,2);
+                    actionsCuisine.initActions(action1Cuisine,action2Cuisine);
+                    cuisine.initPiece(actionsCuisine);
+
+                    action1Sdb.initAction(6,2);
+                    action2Sdb.initAction(7,1);
+                    actionsSdb.initActions(action1Sdb,action2Sdb);
+                    sdb.initPiece(actionsSdb);
+
+                    action1Salon.initAction(8,2);
+                    action2Salon.initAction(9,1);
+                    actionsSalon.initActions(action1Salon,action2Salon);
+                    salon.initPiece(actionsSalon);
+
+                    action1Bureau.initAction(10,1);
+                    action2Bureau.initAction(11,1);
+                    actionsBureau.initActions(action1Bureau,action2Bureau);
+                    bureau.initPiece(actionsBureau);
+
+                    maison.initMaison(jardin,chambre,cuisine,sdb,salon,bureau,aujourdhui,hier);
+
+                    println("");
+                    println("Vous êtes dans une nouvelles journée, faites ", hier.nbActions , " actions pour faire autant que hier. Bonne journée !");
+                    println("");
+                    println("Pour retourner au menu principal, entrez 0");
+
+                    x = readInt();
+
+                }
+                }
+        else if (x == 8) {
+            bool = false;
+        }
+
+        }
+}

@@ -1,0 +1,280 @@
+class Jour {
+    int nbActions;
+    int nbPoints;
+
+    void nouveauJour() {
+        this.nbActions = 0;
+        this.nbPoints = 0;
+    }
+}
+
+
+
+class Piece {
+
+    protected Actions actions;
+    protected int pointsPiece;
+
+    Actions getActions() {
+        return this.actions;
+    }
+
+    int getPointsPiece() {
+        return this.pointsPiece;
+    }
+
+    void setActions(Actions actions1) {
+        this.actions = actions1;
+    }
+
+    void setPointsPiece(int points) {
+        this.pointsPiece = points;
+    }
+
+    void initPiece(Actions a){
+        this.setActions(a);
+        this.setPointsPiece(0);
+    }
+
+    void augmentePointsPiece(int augm) {
+        int newPoints;
+        newPoints = this.getPointsPiece() + augm;
+        this.setPointsPiece(newPoints);
+    }
+
+}
+
+class Actions {
+
+    protected Action action1;
+    protected Action action2;
+
+    Action getAction1() {
+        return this.action1;
+    }
+
+    Action getAction2() {
+        return this.action2;
+    }
+
+    void setAction1(Action action11) {
+        this.action1 = action11;
+    }
+
+    void setAction2(Action action21) {
+        this.action2 = action21;
+    }
+
+    void initActions(Action action12, Action action22) {
+        this.setAction1(action12);
+        this.setAction2(action22);
+    }
+}
+
+
+class Action {
+
+    protected int id;
+    boolean estRealisee;
+    protected int nbPoints;
+
+    int getId() {
+        return this.id;
+    }
+
+    boolean getEstRealisee() {
+        return this.estRealisee;
+    }
+
+    int getNbPoints() {
+        return this.nbPoints;
+    }
+
+    void setId(int id1) {
+        this.id = id1;
+    }
+
+    void setEstRealisee(boolean estRealisee1) {
+        this.estRealisee = estRealisee1;
+    }
+
+    void setNbPoints(int nbPoints1) {
+        this.nbPoints = nbPoints1;
+    }
+
+    void initAction(int id2, int nbPoints2) {
+        this.setId(id2);
+        this.setEstRealisee(false);
+        this.setNbPoints(nbPoints2);
+    }
+
+    void descriptionAction(int i) {
+        if (i==0) {
+            println("Installer des panneaux solaires sur le toit de la maison");
+        }
+        else if (i==1) {
+            println("Cultiver un potager");
+        }
+        else if (i==2) {
+            println("S'habiller en seconde main");
+        }
+        else if (i==3) {
+            println("Eteindre les appareils électroniques non utilisés");
+        }
+        else if (i==4) {
+            println("Trier les déchets");
+        }
+        else if (i==5) {
+            println("Manger végétarien");
+        }
+        else if (i==6) {
+            println("Prendre une douche de moins de 10L");
+        }
+        else if (i==7) {
+            println("Utiliser des produits solides");
+        }
+        else if (i==8) {
+            println("Utiliser un chauffage adapté");
+        }
+        else if (i==9) {
+            println("Eteindre les appareils électroniques non utilisés");
+        }
+        else if (i==10) {
+            println("Utiliser l'éditeur de texte le moins consommateur pour le projet GL");
+        }
+        else if (i==11) {
+            println("Eteindre les appareils électroniques non utilisés");
+        }
+    }
+}
+
+class Maison {
+
+     int points;
+     int empreinte;
+     Piece jardin;
+     Piece chambre;
+     Piece cuisine;
+     Piece sdb;
+     Piece salon;
+     Piece bureau;
+     Jour aujourdhui;
+     Jour hier;
+
+
+     int getPoints() {
+         return this.points;
+     }
+
+     int getEmpreinte() {
+         return this.empreinte;
+     }
+
+     Piece getJardin() {
+         return this.jardin;
+     }
+
+     Piece getChambre() {
+         return this.chambre;
+     }
+
+     Piece getCuisine() {
+             return this.cuisine;
+         }
+
+     Piece getSdb() {
+             return this.sdb;
+         }
+
+     Piece getSalon() {
+             return this.salon;
+         }
+
+     Piece getBureau() {
+             return this.bureau;
+         }
+
+     Jour getAujourdhui() {
+         return this.aujourdhui;
+     }
+
+     Jour getHier() {
+         return this.hier;
+     }
+
+
+
+     void setPoints(int points1) {
+         this.points = points1;
+     }
+
+     void setEmpreinte(int empreinte1) {
+         this.empreinte = empreinte1;
+     }
+
+     void setJardin(Piece jardin1) {
+         this.jardin = jardin1;
+     }
+
+     void setChambre(Piece chambre1) {
+             this.chambre = chambre1;
+         }
+
+     void setCuisine(Piece cuisine1) {
+             this.cuisine = cuisine1;
+         }
+
+     void setSdb(Piece sdb1) {
+             this.sdb = sdb1;
+         }
+
+     void setSalon(Piece salon1) {
+             this.salon = salon1;
+         }
+
+     void setBureau(Piece bureau1) {
+             this.bureau = bureau1;
+         }
+
+     void setAujourdhui(Jour aujourdhui1) {
+         this.aujourdhui = aujourdhui1;
+     }
+
+     void setHier(Jour hier1) {
+         this.hier = hier1;
+     }
+
+     void initMaison(Piece jardin2, Piece chambre2, Piece cuisine2, Piece sdb2,
+                         Piece salon2, Piece bureau2, Jour aujourdhui2, Jour hier2) {
+         this.setPoints(0);
+         this.setEmpreinte(25);
+         this.setJardin(jardin2);
+         this.setChambre(chambre2);
+         this.setCuisine(cuisine2);
+         this.setSdb(sdb2);
+         this.setSalon(salon2);
+         this.setBureau(bureau2);
+         this.setAujourdhui(aujourdhui2);
+         this.setHier(hier2);
+     }
+
+     void actualisePoints() {
+         this.setPoints(this.jardin.getPointsPiece() +
+                            this.cuisine.getPointsPiece() + this.sdb.getPointsPiece() +
+                            this.chambre.getPointsPiece() + this.salon.getPointsPiece() +
+                            this.bureau.getPointsPiece());
+     }
+
+     void nouvelleMaison(Jour a, Jour h) {
+          this.points;
+          this.empreinte;
+          this.jardin;
+          this.chambre;
+          this.cuisine;
+          this.sdb;
+          this.salon;
+          this.bureau;
+          this.aujourdhui;
+          hier;
+     }
+ }
